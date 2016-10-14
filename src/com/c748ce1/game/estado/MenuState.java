@@ -1,8 +1,5 @@
 package com.c748ce1.game.estado;
 
-import com.c748ce1.framework.util.Recursos;
-import com.c748ce1.game.main.Game;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
