@@ -32,9 +32,6 @@ public class MenuState extends State {
     
     @Override
     public void renderizar() {
-        System.out.println("Renderizar MenuState!");
-        Game.tela.getGraphics().setColor(Color.red);
-        Game.tela.getGraphics().drawImage(Recursos.icone, 100, 100, null);
     };
     
     @Override
