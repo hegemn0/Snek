@@ -20,7 +20,7 @@ import java.awt.event.MouseEvent;
 public class LoadState extends State {
     
     @Override
-    public void init() {
+    public void inicializar() {
         Recursos.carregar();
     };
 

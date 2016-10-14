@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 public class MenuState extends State {
 
     @Override
-    public void init() {
+    public void inicializar() {
     };
 
     @Override
