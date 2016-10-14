@@ -57,10 +57,7 @@ public class PlayState extends State {
     public void renderizar() {         
         renderizarBackground();
         apple.renderizar();        
-        snek.renderizar();   
-        
-        Game.tela.getGraphics().setColor(Color.red);
-        Game.tela.getGraphics().fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+        snek.renderizar();
     };
     
     private void renderizarBackground() {
