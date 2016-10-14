@@ -54,7 +54,6 @@ public class Game extends JPanel implements Runnable {
     public void run() {
         long duracaoAtualizacao = 0;
         long duracaoRepouso = 0;
-        int numeroTeste = 0;
                 
         while(executando) {
             long antesAtualizacao = System.nanoTime();
