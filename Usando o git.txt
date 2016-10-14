@@ -1,0 +1,15 @@
+﻿Usando o git
+lista arquivo modificados
+	git status
+Adciona arquivos modificado para comenta
+	git add nome do arquivo
+Comentar os arquivos
+	git commit -m "comentários das alterações"
+baixar atualização do repositorio caso tenha
+	git pull --rebase
+enviar commit para o repositorio
+	git push origin master
+para baixa o projeto va ate a pasta que esta o apache htdocs
+e usa o git clone
+	git clone https://github.com/hegemn0/Snek.git
+
