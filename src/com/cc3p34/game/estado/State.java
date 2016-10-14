@@ -1,5 +1,6 @@
 package com.cc3p34.game.estado;
 
+import com.cc3p34.game.main.Game;
 import com.cc3p34.game.main.Main;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -19,7 +20,7 @@ import java.awt.event.MouseEvent;
 
 public abstract class State {
     
-    public abstract void init();
+    public abstract void inicializar();
     
     public abstract void atualizar(); 
     
@@ -36,6 +37,6 @@ public abstract class State {
     public abstract void mouseDragged(MouseEvent e);
     
     public void setEstado(State estado) {
-        Main.game.setEstado(estado);
+        Game.setEstado(estado);
     }
 }
