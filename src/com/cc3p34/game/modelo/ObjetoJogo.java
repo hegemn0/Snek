@@ -1,4 +1,4 @@
-package com.c748ce1.game.modelo;
+package com.cc3p34.game.modelo;
 
 import java.awt.Point;
 import java.awt.Rectangle;

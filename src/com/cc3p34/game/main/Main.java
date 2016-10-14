@@ -1,4 +1,4 @@
-package com.c748ce1.game.main;
+package com.cc3p34.game.main;
 
 import javax.swing.JFrame;
 

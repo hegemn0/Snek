@@ -1,4 +1,4 @@
-package com.c748ce1.framework.util;
+package com.cc3p34.framework.util;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

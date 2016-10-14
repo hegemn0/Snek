@@ -1,8 +1,8 @@
-package com.c748ce1.game.main;
+package com.cc3p34.game.main;
 
-import com.c748ce1.framework.util.InputHandler;
-import com.c748ce1.game.estado.State;
-import com.c748ce1.game.estado.LoadState;
+import com.cc3p34.framework.util.InputHandler;
+import com.cc3p34.game.estado.State;
+import com.cc3p34.game.estado.LoadState;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;

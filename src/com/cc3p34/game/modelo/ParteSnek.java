@@ -1,8 +1,8 @@
 
-package com.c748ce1.game.modelo;
+package com.cc3p34.game.modelo;
 
-import com.c748ce1.game.main.Game;
-import com.c748ce1.framework.util.Recursos;
+import com.cc3p34.game.main.Game;
+import com.cc3p34.framework.util.Recursos;
 import java.awt.Point;
 import java.awt.Rectangle;
 

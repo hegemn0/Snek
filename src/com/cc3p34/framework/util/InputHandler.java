@@ -1,6 +1,6 @@
-package com.c748ce1.framework.util;
+package com.cc3p34.framework.util;
 
-import com.c748ce1.game.estado.State;
+import com.cc3p34.game.estado.State;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;

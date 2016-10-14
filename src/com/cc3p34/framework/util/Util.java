@@ -1,7 +1,7 @@
-package com.c748ce1.framework.util;
+package com.cc3p34.framework.util;
 
-import com.c748ce1.game.main.Game;
-import com.c748ce1.game.modelo.Snek;
+import com.cc3p34.game.main.Game;
+import com.cc3p34.game.modelo.Snek;
 import java.awt.Point;
 import java.util.Random;
 

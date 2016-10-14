@@ -1,10 +1,10 @@
-package com.c748ce1.game.estado;
+package com.cc3p34.game.estado;
 
-import com.c748ce1.framework.util.Util;
-import com.c748ce1.game.main.Game;
-import com.c748ce1.game.modelo.Snek;
-import com.c748ce1.game.modelo.Apple;
-import com.c748ce1.game.modelo.ParteSnek;
+import com.cc3p34.framework.util.Util;
+import com.cc3p34.game.main.Game;
+import com.cc3p34.game.modelo.Snek;
+import com.cc3p34.game.modelo.Apple;
+import com.cc3p34.game.modelo.ParteSnek;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;

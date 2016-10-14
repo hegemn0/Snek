@@ -1,4 +1,4 @@
-package com.c748ce1.game.estado;
+package com.cc3p34.game.estado;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
