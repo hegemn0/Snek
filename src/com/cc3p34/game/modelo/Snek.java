@@ -88,6 +88,10 @@ public class Snek extends ObjetoJogo {
         }
     }
     
+    public int getDirecao(){
+        return direcao;
+    }
+    
     public int getTamanho() {
         return tamanho;
     }

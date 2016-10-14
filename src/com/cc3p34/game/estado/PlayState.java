@@ -69,16 +69,25 @@ public class PlayState extends State {
     public void onKeyPress(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_UP: {
-                snek.setDirecao(CIMA);
+                if(snek.getDirecao() !=BAIXO){
+                 snek.setDirecao(CIMA);   
+                }                
             } break;
             case KeyEvent.VK_DOWN: {
-                snek.setDirecao(BAIXO);
+                if(snek.getDirecao() !=CIMA){
+                  snek.setDirecao(BAIXO);  
+                } 
             } break;
             case KeyEvent.VK_RIGHT: {
-                snek.setDirecao(DIREITA);
+                if(snek.getDirecao() !=ESQUERDA){
+                  snek.setDirecao(DIREITA); 
+                }                 
             } break;
             case KeyEvent.VK_LEFT: {
-                snek.setDirecao(ESQUERDA);
+                if(snek.getDirecao() !=DIREITA){
+                 snek.setDirecao(ESQUERDA); 
+                }
+                
             } break;                                                            
         }
     };
