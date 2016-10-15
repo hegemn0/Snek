@@ -1,5 +1,6 @@
 package com.cc3p34.game.estado;
 
+import com.cc3p34.framework.util.Recursos;
 import com.cc3p34.framework.util.Util;
 import com.cc3p34.game.main.Game;
 import com.cc3p34.game.modelo.Snek;
@@ -135,7 +136,7 @@ public class PlayState extends State {
         if(snek.getEmMovimento()) {
             for(ParteSnek parte : snek.getPartesSnek()) {
                 if(snek.getPosicao().equals(parte.getPosicao())) {
-                    System.out.println("Colisão com partes!");
+                    Recursos.executarAudioColisaoPartes();
                     snek.reset();
                 }
             }
@@ -144,6 +145,7 @@ public class PlayState extends State {
 
     private void detectarColisaoMaca() {
         if(snek.getRect().intersects(apple.getRect())) {
+            Recursos.executarAudioMordidaMaca();
             apple.setPosicao(Util.gerarPosicaoMaca(snek));
             snek.adicionarParte();
         }

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public abstract class ObjetoJogo {
     protected Point posicao;
     protected Rectangle rect;
-    protected BufferedImage imagem;
+    protected BufferedImage textura;
     protected boolean debug;
     
     public abstract void renderizar();
@@ -34,7 +34,7 @@ public abstract class ObjetoJogo {
         return rect;
     };    
     
-    public BufferedImage getImagem() {
-        return imagem;
+    public BufferedImage getTextura() {
+        return textura;
     }   
 }
