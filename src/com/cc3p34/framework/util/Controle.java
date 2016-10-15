@@ -19,7 +19,7 @@ import java.awt.event.MouseListener;
  * 
  */
 
-public class InputHandler implements KeyListener, MouseListener {
+public class Controle implements KeyListener, MouseListener {
     private State estado;
     
     public void setEstado(State estado) {

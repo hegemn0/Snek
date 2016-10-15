@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 public class Snek extends ObjetoJogo {
     
-    private int tamanho, velocidade, direcao;
+    private int tamanho, velocidade, direcao, qtdMovimentos;
     private Point posicaoAnterior;
-    private ArrayList<ParteSnek> partes;
+    private ArrayList<ParteSnek> partesSnek;
+    private ArrayList<Apple> apples;
+    private boolean emMovimento;
     
     public Snek(int velocidade) {
         this.imagem = Recursos.blocosnek;
@@ -19,34 +21,54 @@ public class Snek extends ObjetoJogo {
         this.tamanho = 0;
         this.velocidade = velocidade;
         this.direcao = 0;
-        this.partes = new ArrayList<>();
+        this.partesSnek = new ArrayList<>();
+        this.apples = new ArrayList<>();
+        this.qtdMovimentos = 0;
+        this.emMovimento = false;        
         this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);
-        this.debug = false;       
+        this.debug = true;       
     }
+    
+    public Snek(int velocidade, int tamanho) {
+        this.imagem = Recursos.blocosnek;
+        this.posicao = Util.gerarPosicaoSnek(velocidade);
+        this.tamanho = tamanho;
+        this.velocidade = velocidade;
+        this.direcao = 0;
+        this.partesSnek = new ArrayList<>();
+        this.apples = new ArrayList<>();
+        this.qtdMovimentos = 0;
+        this.emMovimento = false;
+        this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);
+        this.debug = true;       
+    }    
 
     @Override
     public void renderizar() {
         Game.tela.getGraphics().drawImage(imagem, posicao.x, posicao.y, null);
         
-        for(ParteSnek parte : partes) {
+        for(ParteSnek parte : partesSnek) {
             Game.tela.getGraphics().drawImage(
                     imagem, parte.getPosicaoX(), parte.getPosicaoY(), null);
         }
     }
 
     @Override
-    public void atualizar() {  
-        if(tamanho > partes.size()) {
-            partes.add(0, new ParteSnek(posicao));
+    public void atualizar() {         
+        if(emMovimento) {
+            if(tamanho > partesSnek.size() && partesSnek.size() == 0) {
+                partesSnek.add(new ParteSnek(posicao));
+            } else if(tamanho > partesSnek.size() && partesSnek.size() > 0){
+                partesSnek.add(new ParteSnek(posicaoAnterior));
+            }
+            
+            mover();
+            moverPartes();            
         }
-        
-        mover();
-        moverPartes();
+                     
         atualizarRect();
         
-        if(debug) {
-            mostrarDebug();
-        }
+        if(debug) mostrarDebug();
     }
     
     private void atualizarRect() {
@@ -54,6 +76,7 @@ public class Snek extends ObjetoJogo {
     } 
     
     private void mover() {
+        qtdMovimentos++;
         posicaoAnterior = new Point(posicao);
         switch(direcao) {
             case 1: {
@@ -71,7 +94,13 @@ public class Snek extends ObjetoJogo {
         }        
     }    
     
-    public void setDirecao(int novaDirecao) {        
+    public void setDirecao(int novaDirecao) {    
+        
+        if(novaDirecao != 0)
+            emMovimento = true;
+        else
+            emMovimento = false;
+        
         switch(novaDirecao) {
             case 1: {
                 direcao = 1;
@@ -96,34 +125,47 @@ public class Snek extends ObjetoJogo {
         return tamanho;
     }
     
-    public void setTamanho(int novoTamanho) {
-        this.tamanho = novoTamanho;
-    }
-    
     public int getVelocidade() {
         return velocidade;
     }
     
-    public ArrayList<ParteSnek> getPartes() {
-        return partes;
+    public boolean getEmMovimento() {
+        return emMovimento;
+    }
+    
+    public ArrayList<ParteSnek> getPartesSnek() {
+        return partesSnek;
     }
 
     private void mostrarDebug() {
-        System.out.println("Direção: " + direcao);
-        System.out.println("Posição: " + "[" + posicao.x + ", " + posicao.y + "]");        
+        System.out.println(
+                "Em movimento: " + emMovimento + "\n" +
+                "Direção: " + direcao + "\n" +
+                "Quantidade de Movimentos: " + qtdMovimentos + "\n" +
+                "Quantidade de Partes: " + partesSnek.size() + "\n" +            
+                "Quantidade de Maças: " + apples.size() + "\n" +                
+                "Posição: " + "[" + posicao.x + ", " + posicao.y + "]" + "\n"
+        );        
     }
 
     private void moverPartes() {
-        if(partes.size() > 0) {
-            ParteSnek parte = partes.remove(0);
+        if(partesSnek.size() > 0) {        
+            ParteSnek parte = partesSnek.remove(0);
             parte.setPosicao(posicaoAnterior);
-            partes.add(parte);
+            partesSnek.add(parte);            
         }
     }
     
     public void reset() {
+        qtdMovimentos = 0;
         tamanho = 0;
-        partes = new ArrayList<>();
+        apples = new ArrayList<>();
+        partesSnek = new ArrayList<>();
         posicao = new Point(Util.gerarPosicaoSnek(velocidade));
     }
+
+    public void adicionarParte() {
+        partesSnek.add(0, new ParteSnek(posicao));
+    }
+    
 }

@@ -1,6 +1,6 @@
 package com.cc3p34.game.main;
 
-import com.cc3p34.framework.util.InputHandler;
+import com.cc3p34.framework.util.Controle;
 import com.cc3p34.game.estado.State;
 import com.cc3p34.game.estado.LoadState;
 import java.awt.Color;
@@ -35,15 +35,15 @@ public class Game extends JPanel implements Runnable {
     public static float deltaT;    
     public static Image tela;   
     private Thread threadJogo;
-    private InputHandler inputHandler;
-    private volatile State estado;
+    private static Controle controle;
+    private static volatile State estado;
     private volatile boolean executando;
     
     public Game() {  
-        initGUI();
+        inicializarGUI();
     }
     
-    private void initGUI() {        
+    private void inicializarGUI() {        
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
         setFocusable(true);
@@ -95,17 +95,17 @@ public class Game extends JPanel implements Runnable {
         getGraphics().dispose();        
     }
     
-    public void setEstado(State novoEstado) {
+    public static void setEstado(State novoEstado) {
         System.gc();
-        novoEstado.init();
+        novoEstado.inicializar();
         estado = novoEstado;
-        inputHandler.setEstado(estado);
+        controle.setEstado(estado);
     }
     
     @Override
     public void addNotify() {
         super.addNotify();
-        initInput();
+        inicializarControle();
         setEstado(new LoadState());
         inicializarJogo();
     }
@@ -116,10 +116,10 @@ public class Game extends JPanel implements Runnable {
         threadJogo.start();
     }
     
-    private void initInput() {
-        inputHandler = new InputHandler();
-        addKeyListener(inputHandler);
-        addMouseListener(inputHandler);
+    private void inicializarControle() {
+        controle = new Controle();
+        addKeyListener(controle);
+        addMouseListener(controle);
     }
     
     public void finalizar() {

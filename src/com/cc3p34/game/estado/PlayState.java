@@ -25,6 +25,7 @@ import java.awt.event.MouseEvent;
 
 public class PlayState extends State {
     
+    private final int PARADO = 0;
     private final int CIMA = 1;
     private final int BAIXO = 2;
     private final int DIREITA = 3;
@@ -37,8 +38,8 @@ public class PlayState extends State {
     private Apple apple;
     
     @Override
-    public void init() {                  
-        snek = new Snek(20);
+    public void inicializar() {                  
+        snek = new Snek(20, 5);
         apple = new Apple(snek);
     }; 
     
@@ -68,6 +69,9 @@ public class PlayState extends State {
     @Override
     public void onKeyPress(KeyEvent e) {
         switch(e.getKeyCode()) {
+            case KeyEvent.VK_SPACE: {
+                snek.setDirecao(PARADO);
+            } break;
             case KeyEvent.VK_UP: {
                 if(snek.getDirecao() !=BAIXO){
                  snek.setDirecao(CIMA);   
@@ -87,7 +91,6 @@ public class PlayState extends State {
                 if(snek.getDirecao() !=DIREITA){
                  snek.setDirecao(ESQUERDA); 
                 }
-                
             } break;                                                            
         }
     };
@@ -96,16 +99,13 @@ public class PlayState extends State {
     public void onKeyRelease(KeyEvent e) {};    
 
     @Override
-    public void mousePressed(MouseEvent e) {
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-    }
+    public void mouseDragged(MouseEvent e) {}
 
     private void detectarColisoes() {
         detectarColisaoBordas();
@@ -132,10 +132,12 @@ public class PlayState extends State {
     }
 
     private void detectarColisaoPartes() {
-        for(ParteSnek parte : snek.getPartes()) {
-            if(snek.getPosicao().equals(parte.getPosicao())) {
-                System.out.println("Colisão com partes!");
-                snek.reset();
+        if(snek.getEmMovimento()) {
+            for(ParteSnek parte : snek.getPartesSnek()) {
+                if(snek.getPosicao().equals(parte.getPosicao())) {
+                    System.out.println("Colisão com partes!");
+                    snek.reset();
+                }
             }
         }
     }
@@ -143,7 +145,7 @@ public class PlayState extends State {
     private void detectarColisaoMaca() {
         if(snek.getRect().intersects(apple.getRect())) {
             apple.setPosicao(Util.gerarPosicaoMaca(snek));
-            snek.setTamanho(snek.getTamanho()+1);
+            snek.adicionarParte();
         }
     }
 }

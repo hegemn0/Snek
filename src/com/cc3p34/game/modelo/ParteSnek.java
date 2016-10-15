@@ -27,5 +27,4 @@ public class ParteSnek extends ObjetoJogo {
     private void atualizarRect() {
         rect.setBounds(posicao.x, posicao.y, 20, 20);
     }
-
 }
