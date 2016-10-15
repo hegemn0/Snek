@@ -7,14 +7,8 @@ import java.util.Random;
 
 public class Util {
     
-    public static int gerarNumero(int minimo, int maximo) {
-        int resultado = 0;
-        
-        while(resultado < minimo) {
-            resultado = new Random().nextInt(maximo);
-        }
-        
-        return resultado;
+    public static int gerarNumero(int minimo, int maximo) {        
+        return new Random().nextInt(((maximo - minimo) + 1) + minimo);
     }
 
     public static Point gerarPosicaoSnek(int velocidade) {

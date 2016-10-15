@@ -3,6 +3,7 @@ package com.cc3p34.game.modelo;
 import com.cc3p34.framework.util.Util;
 import com.cc3p34.game.main.Game;
 import com.cc3p34.framework.util.Recursos;
+import java.applet.AudioClip;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Snek extends ObjetoJogo {
     private boolean emMovimento;
     
     public Snek(int velocidade) {
-        this.imagem = Recursos.snekcabeca;
+        this.textura = Recursos.snekcabeca;
         this.posicao = Util.gerarPosicaoSnek(velocidade);
         this.tamanho = 0;
         this.velocidade = velocidade;
@@ -30,7 +31,7 @@ public class Snek extends ObjetoJogo {
     }
     
     public Snek(int velocidade, int tamanho) {
-        this.imagem = Recursos.snekcabeca;
+        this.textura = Recursos.snekcabeca;
         this.posicao = Util.gerarPosicaoSnek(velocidade);
         this.tamanho = tamanho;
         this.velocidade = velocidade;
@@ -45,11 +46,11 @@ public class Snek extends ObjetoJogo {
 
     @Override
     public void renderizar() {
-        Game.tela.getGraphics().drawImage(imagem, posicao.x, posicao.y, null);
+        Game.tela.getGraphics().drawImage(textura, posicao.x, posicao.y, null);
         
         for(ParteSnek parte : partesSnek) {
             Game.tela.getGraphics().drawImage(
-                    parte.getImagem(), parte.getPosicaoX(), parte.getPosicaoY(), null);
+                    parte.getTextura(), parte.getPosicaoX(), parte.getPosicaoY(), null);
         }
     }
 

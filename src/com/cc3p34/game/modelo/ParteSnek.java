@@ -9,14 +9,14 @@ import java.awt.Rectangle;
 public class ParteSnek extends ObjetoJogo {
     
     public ParteSnek(Point posicao) {
-        this.imagem = Recursos.snekcorpo;
+        this.textura = Recursos.snekcorpo;
         this.posicao = posicao;
         this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);
     }
 
     @Override
     public void renderizar() {
-        Game.tela.getGraphics().drawImage(imagem, posicao.x, posicao.y, null);
+        Game.tela.getGraphics().drawImage(textura, posicao.x, posicao.y, null);
     }
 
     @Override

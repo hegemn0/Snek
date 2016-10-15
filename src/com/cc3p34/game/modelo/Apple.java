@@ -9,7 +9,7 @@ public class Apple extends ObjetoJogo {
     private final Snek snake;
     
     public Apple(Snek snake) {
-        this.imagem = Recursos.apple;
+        this.textura = Recursos.apple;
         this.snake = snake;
         this.posicao = Util.gerarPosicaoMaca(snake);
         this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);
@@ -17,7 +17,7 @@ public class Apple extends ObjetoJogo {
     
     @Override
     public void renderizar() {
-        Game.tela.getGraphics().drawImage(imagem, posicao.x, posicao.y, null);
+        Game.tela.getGraphics().drawImage(textura, posicao.x, posicao.y, null);
     }
 
     @Override
