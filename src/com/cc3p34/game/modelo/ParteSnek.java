@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 public class ParteSnek extends ObjetoJogo {
     
     public ParteSnek(Point posicao) {
-        this.imagem = Recursos.blocosnek;
+        this.imagem = Recursos.snekcorpo;
         this.posicao = posicao;
         this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);
     }

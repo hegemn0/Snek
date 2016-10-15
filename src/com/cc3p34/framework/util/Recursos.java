@@ -20,12 +20,14 @@ import javax.imageio.ImageIO;
 public class Recursos {
     private static final String DIR_IMAGENS = "/recursos/imagem/";
     
-    public static BufferedImage icone, blocosnek, blocoapple;
+    public static BufferedImage icone, snekcabeca, snekcorpo, snekrabo, apple;
     
     public static void carregar() { 
-        icone = carregarImagem("iconesnek.png");
-        blocosnek = carregarImagem("blocosnek.png");
-        blocoapple = carregarImagem("blocoapple.png");
+        icone = carregarImagem("icone.png");
+        snekcabeca = carregarImagem("snekcabeca.png");
+        snekcorpo = carregarImagem("snekcorpo.png");
+        snekrabo = carregarImagem("snekrabo.png");
+        apple = carregarImagem("apple.png");
     }
     
     private static BufferedImage carregarImagem(String nomeArquivo) {

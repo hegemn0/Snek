@@ -9,7 +9,7 @@ public class Apple extends ObjetoJogo {
     private final Snek snake;
     
     public Apple(Snek snake) {
-        this.imagem = Recursos.blocoapple;
+        this.imagem = Recursos.apple;
         this.snake = snake;
         this.posicao = Util.gerarPosicaoMaca(snake);
         this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);

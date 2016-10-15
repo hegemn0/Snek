@@ -39,7 +39,7 @@ public class PlayState extends State {
     
     @Override
     public void inicializar() {                  
-        snek = new Snek(20, 5);
+        snek = new Snek(20);
         apple = new Apple(snek);
     }; 
     

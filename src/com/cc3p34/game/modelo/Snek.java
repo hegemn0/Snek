@@ -16,7 +16,7 @@ public class Snek extends ObjetoJogo {
     private boolean emMovimento;
     
     public Snek(int velocidade) {
-        this.imagem = Recursos.blocosnek;
+        this.imagem = Recursos.snekcabeca;
         this.posicao = Util.gerarPosicaoSnek(velocidade);
         this.tamanho = 0;
         this.velocidade = velocidade;
@@ -30,7 +30,7 @@ public class Snek extends ObjetoJogo {
     }
     
     public Snek(int velocidade, int tamanho) {
-        this.imagem = Recursos.blocosnek;
+        this.imagem = Recursos.snekcabeca;
         this.posicao = Util.gerarPosicaoSnek(velocidade);
         this.tamanho = tamanho;
         this.velocidade = velocidade;
@@ -49,19 +49,18 @@ public class Snek extends ObjetoJogo {
         
         for(ParteSnek parte : partesSnek) {
             Game.tela.getGraphics().drawImage(
-                    imagem, parte.getPosicaoX(), parte.getPosicaoY(), null);
+                    parte.getImagem(), parte.getPosicaoX(), parte.getPosicaoY(), null);
         }
     }
 
     @Override
     public void atualizar() {         
         if(emMovimento) {
-            if(tamanho > partesSnek.size() && partesSnek.size() == 0) {
+            if(tamanho > partesSnek.size() && partesSnek.isEmpty()) {
                 partesSnek.add(new ParteSnek(posicao));
-            } else if(tamanho > partesSnek.size() && partesSnek.size() > 0){
+            } else if(tamanho > partesSnek.size() && !partesSnek.isEmpty()){
                 partesSnek.add(new ParteSnek(posicaoAnterior));
             }
-            
             mover();
             moverPartes();            
         }
@@ -165,7 +164,7 @@ public class Snek extends ObjetoJogo {
     }
 
     public void adicionarParte() {
-        partesSnek.add(0, new ParteSnek(posicao));
+        partesSnek.add(0, new ParteSnek(posicaoAnterior));
     }
     
 }
