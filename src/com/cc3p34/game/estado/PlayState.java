@@ -151,10 +151,10 @@ public class PlayState extends State {
         if(snek.getRect().contains(apple.getPosicao())) {
             Recursos.executarAudioMordidaMaca();
             apple.reset();
-            snek.adicionarParte();
+            snek.adicionarParte();        
         }
     }
-
+    
     private void resetTempo() {
         tempo = intervaloMovimentos;
     }

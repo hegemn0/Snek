@@ -2,6 +2,7 @@ package com.cc3p34.game.modelo;
 
 import com.cc3p34.game.main.Game;
 import com.cc3p34.framework.util.Recursos;
+import java.applet.AudioClip;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
