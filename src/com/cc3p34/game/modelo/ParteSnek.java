@@ -1,23 +1,26 @@
 
 package com.cc3p34.game.modelo;
 
-import com.cc3p34.game.main.Game;
-import com.cc3p34.framework.util.Recursos;
 import java.awt.Point;
 import java.awt.Rectangle;
 
 public class ParteSnek extends ObjetoJogo {
+    private int direcao;
     
-    public ParteSnek(Point posicao) {
-        this.textura = Recursos.snekcorpo;
+    public ParteSnek(int x, int y, int direcao) {
+        this.posicao = new Point(x, y);
+        this.direcao = direcao;
+        this.rect = new Rectangle(posicao.x, posicao.y, 32, 32);
+    }    
+    
+    public ParteSnek(Point posicao, int direcao) {
         this.posicao = posicao;
-        this.rect = new Rectangle(posicao.x, posicao.y, 20, 20);
+        this.direcao = direcao;
+        this.rect = new Rectangle(posicao.x, posicao.y, 32, 32);
     }
 
     @Override
-    public void renderizar() {
-        Game.tela.getGraphics().drawImage(textura, posicao.x, posicao.y, null);
-    }
+    public void renderizar() {}
 
     @Override
     public void atualizar() {        
@@ -25,6 +28,14 @@ public class ParteSnek extends ObjetoJogo {
     }
     
     private void atualizarRect() {
-        rect.setBounds(posicao.x, posicao.y, 20, 20);
+        rect.setBounds(posicao.x, posicao.y, 32, 32);
+    }
+    
+    public int getDirecao() {
+        return direcao;
+    }
+    
+    public void setDirecao(int direcao) {
+        this.direcao = direcao;
     }
 }

@@ -1,5 +1,7 @@
 package com.cc3p34.game.main;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 
 /**
@@ -20,14 +22,6 @@ public class Main {
     public static JFrame frame;
     
     public static void main(String[] args) {        
-        game = new Game();
-        game.setDoubleBuffered(true); 
-        
-        frame = new JFrame("snek");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);      
-        frame.add(game);
-        frame.pack();
-        frame.setVisible(true);
+        game = new Game();       
     }
 }

@@ -1,13 +1,19 @@
 package com.cc3p34.game.main;
 
 import com.cc3p34.framework.util.Controle;
+import com.cc3p34.framework.util.Escala;
 import com.cc3p34.game.estado.State;
 import com.cc3p34.game.estado.LoadState;
+import static com.cc3p34.game.main.Main.frame;
+import static com.cc3p34.game.main.Main.game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -26,15 +32,18 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Game extends JPanel implements Runnable {
     
-    public static final String DIR_IMAGENS = "/recursos/imagem/";
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
-    public static final Point CENTRO = new Point(WIDTH/2, HEIGHT/2);
-    public static final Dimension RESOLUCAO = new Dimension(WIDTH, HEIGHT); 
+    private static final int LARGURA_BASE = 800;
+    private static final int ALTURA_BASE = 600;
     
-    public static float deltaT;    
-    public static Image tela;   
+    private static int largura = LARGURA_BASE;
+    private static int altura = ALTURA_BASE;
+
+    private static Escala escala;
+    public static float deltaTempo; 
+    public static Graphics2D tela;
+    public static Image imagem;   
     private Thread threadJogo;
+    private JFrame frame;
     private static Controle controle;
     private static volatile State estado;
     private volatile boolean executando;
@@ -43,11 +52,29 @@ public class Game extends JPanel implements Runnable {
         inicializarGUI();
     }
     
-    private void inicializarGUI() {        
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+    private void inicializarGUI() {          
+        setDoubleBuffered(true);
+        setPreferredSize(new Dimension(largura, altura));
         setBackground(Color.BLACK);
         setFocusable(true);
         requestFocus(); 
+        
+        frame = new JFrame("snek");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);      
+        frame.add(this);
+        frame.pack();
+        frame.setVisible(true);
+        
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int LARGURA = ((JFrame)e.getSource()).getContentPane().getWidth();
+                int ALTURA = ((JFrame)e.getSource()).getContentPane().getHeight();
+                                                
+                //escala = new Escala(LARGURA, ALTURA);
+            }
+        });        
     }    
     
     @Override
@@ -57,7 +84,7 @@ public class Game extends JPanel implements Runnable {
                 
         while(executando) {
             long antesAtualizacao = System.nanoTime();
-            deltaT = (duracaoAtualizacao + duracaoRepouso) / 1000f;
+            deltaTempo = (duracaoAtualizacao + duracaoRepouso) / 1000f;
             
             atualizarERenderizar();
             
@@ -79,18 +106,18 @@ public class Game extends JPanel implements Runnable {
         estado.renderizar();
         renderizarImagem();
     }
-    
+        
     private void prepararImagem() {
-        if(tela == null) {
-            tela = createImage(WIDTH, HEIGHT);
-        }
-        Graphics2D g = (Graphics2D)tela.getGraphics();
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        if(imagem == null) {
+            imagem = createImage(largura, altura);
+        }        
+        tela = (Graphics2D)imagem.getGraphics();
+        tela.fillRect(0, 0, largura, altura);        
     }
     
     private void renderizarImagem() {
-        if(tela != null) {
-            getGraphics().drawImage(tela, 0, 0, null);
+        if(imagem != null) {
+            getGraphics().drawImage(imagem, 0, 0, null);
         }
         getGraphics().dispose();        
     }
@@ -126,4 +153,27 @@ public class Game extends JPanel implements Runnable {
         executando = false;
     }
     
+    public static int getLargura() {
+        return largura;
+    }
+    
+    public static int getAltura() {
+        return altura;
+    }
+
+    public static int getLarguraBase() {
+        return LARGURA_BASE;
+    }
+    
+    public static int getAlturaBase() {
+        return ALTURA_BASE;
+    } 
+    
+    /*    public static Double getEscalaX() {
+    return escala.getX();
+    }
+    
+    public static Double getEscalaY() {
+    return escala.getY();
+    }*/
 }

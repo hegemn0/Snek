@@ -28,22 +28,29 @@ public class Recursos {
     private static final String DIR_IMAGENS = "/recursos/imagem/";
     private static final String DIR_AUDIO = "/recursos/audio/";
     
-    public static BufferedImage icone, snekcabeca, snekcorpo, snekrabo, apple;    
+    public static BufferedImage icone, apple;  
     
-    public static AudioClip mordidaMaca01, mordidaMaca02, 
-            mordidaMaca03, mordidaMaca04;
-    public static AudioClip colisaoPartes01, colisaoPartes02, 
-            colisaoPartes03, colisaoPartes04;    
+    public static BufferedImage[] snekCabeca, snekCorpo, snekCorpoAngulo, snekCauda;   
     
     public static AudioClip[] mordidaMaca, colisaoPartes;
     
     public static void carregar() { 
         icone = carregarImagem("icone.png");
-        snekcabeca = carregarImagem("snekcabeca.png");
-        snekcorpo = carregarImagem("snekcorpo.png");
-        snekrabo = carregarImagem("snekrabo.png");
         apple = carregarImagem("apple.png");
                 
+        snekCabeca = new BufferedImage[] {
+            carregarImagem("snekcabeca.png"),
+        };
+        
+        snekCorpo = new BufferedImage[] {
+            carregarImagem("snekcorpo_de.png"),
+            carregarImagem("snekcorpo_cb.png"),
+        };
+        
+        snekCauda = new BufferedImage[] {
+            carregarImagem("snekrabo.png"),
+        };
+        
         colisaoPartes = new AudioClip[] {
             carregarAudio("colisao_partes01.wav"),
             carregarAudio("colisao_partes02.wav"),
